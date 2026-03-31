@@ -1,0 +1,6 @@
+{
+  "NetAPI.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\NetAPI\\src\\NetAPI.Api",
+  "NetAPI.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\NetAPI\\src\\NetAPI.Application",
+  "NetAPI.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\NetAPI\\src\\NetAPI.Domain",
+  "NetAPI.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\NetAPI\\src\\NetAPI.Infrastructure"
+}

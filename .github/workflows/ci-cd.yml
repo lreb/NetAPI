@@ -1,0 +1,122 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  DOTNET_VERSION: "9.0.x"
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/netapi
+
+jobs:
+  # ─── Build & Test ────────────────────────────────────────────────────────────
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore NetAPI.sln
+
+      - name: Build (Release)
+        run: dotnet build NetAPI.sln -c Release --no-restore
+
+      - name: Run unit tests
+        run: |
+          dotnet test tests/NetAPI.UnitTests/NetAPI.UnitTests.csproj \
+            -c Release \
+            --no-build \
+            --logger "trx;LogFileName=unit-results.trx" \
+            --collect:"XPlat Code Coverage" \
+            -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+
+      - name: Run integration tests
+        run: |
+          dotnet test tests/NetAPI.IntegrationTests/NetAPI.IntegrationTests.csproj \
+            -c Release \
+            --no-build \
+            --logger "trx;LogFileName=integration-results.trx"
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: "**/*.trx"
+          reporter: dotnet-trx
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          files: "**/coverage.cobertura.xml"
+          fail_ci_if_error: false
+
+  # ─── Static Analysis ─────────────────────────────────────────────────────────
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Check for vulnerable packages
+        run: dotnet list NetAPI.sln package --vulnerable --include-transitive
+
+  # ─── Docker Build & Push ─────────────────────────────────────────────────────
+  docker:
+    name: Docker Build & Push
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix=sha-
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

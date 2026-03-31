@@ -1,0 +1,12 @@
+C:\Projects\NetAPI\src\NetAPI.Domain\bin\Debug\net9.0\NetAPI.Domain.deps.json
+C:\Projects\NetAPI\src\NetAPI.Domain\bin\Debug\net9.0\NetAPI.Domain.dll
+C:\Projects\NetAPI\src\NetAPI.Domain\bin\Debug\net9.0\NetAPI.Domain.pdb
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.AssemblyInfoInputs.cache
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.AssemblyInfo.cs
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.csproj.CoreCompileInputs.cache
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.sourcelink.json
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.dll
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\refint\NetAPI.Domain.dll
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\NetAPI.Domain.pdb
+C:\Projects\NetAPI\src\NetAPI.Domain\obj\Debug\net9.0\ref\NetAPI.Domain.dll

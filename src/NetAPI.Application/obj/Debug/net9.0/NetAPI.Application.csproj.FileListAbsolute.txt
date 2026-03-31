@@ -1,0 +1,16 @@
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.csproj.AssemblyReference.cache
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.AssemblyInfoInputs.cache
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.AssemblyInfo.cs
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.csproj.CoreCompileInputs.cache
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.sourcelink.json
+C:\Projects\NetAPI\src\NetAPI.Application\bin\Debug\net9.0\NetAPI.Application.deps.json
+C:\Projects\NetAPI\src\NetAPI.Application\bin\Debug\net9.0\NetAPI.Application.dll
+C:\Projects\NetAPI\src\NetAPI.Application\bin\Debug\net9.0\NetAPI.Application.pdb
+C:\Projects\NetAPI\src\NetAPI.Application\bin\Debug\net9.0\NetAPI.Domain.dll
+C:\Projects\NetAPI\src\NetAPI.Application\bin\Debug\net9.0\NetAPI.Domain.pdb
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.A.6C6BEE00.Up2Date
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.dll
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\refint\NetAPI.Application.dll
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\NetAPI.Application.pdb
+C:\Projects\NetAPI\src\NetAPI.Application\obj\Debug\net9.0\ref\NetAPI.Application.dll

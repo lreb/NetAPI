@@ -1,0 +1,13 @@
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/*.user
+**/*.suo
+**/logs
+**/TestResults
+**/coverage
+**/.github/workflows
+**/tests
