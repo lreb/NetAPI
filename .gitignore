@@ -1,0 +1,154 @@
+## -----------------------------------------------------------------------
+## .NET / C# — build outputs
+## -----------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+nuget.config
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## MSBuild
+[Rr]elease/
+x64/
+x86/
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+## Visual Studio
+.vs/
+*.rsuser
+*.MigrationBackup
+*.VC.db
+*.VC.opendb
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## VS Code (keep settings/launch, ignore temp)
+# .vscode/            ← intentionally NOT ignored (launch.json, tasks.json are useful)
+.vscode/local.json
+
+## -----------------------------------------------------------------------
+## ASP.NET Core / runtime
+## -----------------------------------------------------------------------
+# Published output
+[Pp]ublish/
+PublishProfiles/
+*.pubxml
+*.pubxml.user
+
+# Entity Framework migrations bundle
+efbundle
+efbundle.exe
+
+## -----------------------------------------------------------------------
+## Secrets & environment — NEVER commit
+## -----------------------------------------------------------------------
+*.pfx
+*.p12
+*.cer
+*.key
+*.pem
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+secrets.json
+**/secrets.json
+**/*secrets*.json
+user-secrets/
+
+## -----------------------------------------------------------------------
+## Test results & coverage
+## -----------------------------------------------------------------------
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+TestResults/
+coverage/
+coverage.xml
+*.coverage
+*.coveragexml
+*.trx
+BenchmarkDotNet.Artifacts/
+
+## -----------------------------------------------------------------------
+## Docker
+## -----------------------------------------------------------------------
+# Keep Dockerfile and docker-compose.yml
+# Ignore local override files
+docker-compose.override.yml
+docker-compose.local.yml
+
+## -----------------------------------------------------------------------
+## OS junk
+## -----------------------------------------------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+## -----------------------------------------------------------------------
+## CI / tooling
+## -----------------------------------------------------------------------
+.sonarqube/
+.scannerwork/
+.github/workflows/*.local.yml
