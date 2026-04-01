@@ -20,6 +20,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .GreaterThanOrEqualTo(0).WithMessage("Price cannot be negative.");
 
         RuleFor(x => x.Currency)
+            .Cascade(CascadeMode.Stop)
             .NotEmpty().WithMessage("Currency is required.")
             .Length(3).WithMessage("Currency must be a 3-letter ISO code.")
             .Must(c => ValidCurrencies.Contains(c.ToUpperInvariant()))
