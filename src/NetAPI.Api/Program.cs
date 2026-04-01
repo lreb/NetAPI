@@ -37,6 +37,7 @@ try
         .SetBasePath(builder.Environment.ContentRootPath)
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
         .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.local.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables();
 
     // ─── Application & Infrastructure layers ─────────────────────────────────
@@ -104,9 +105,9 @@ try
 
     // ─── Health Checks ────────────────────────────────────────────────────────
     builder.Services.AddHealthChecks()
-        .AddSqlServer(
+        .AddNpgSql(
             builder.Configuration.GetConnectionString("DefaultConnection")!,
-            name: "sql-server",
+            name: "postgresql",
             tags: ["db", "sql"])
         .AddRedis(
             builder.Configuration.GetConnectionString("Redis") ?? "localhost:6379",
@@ -191,7 +192,7 @@ try
     Log.Information("NetAPI starting up in {Environment} environment.", app.Environment.EnvironmentName);
     await app.RunAsync();
 }
-catch (Exception ex)
+catch (Exception ex) when (ex is not HostAbortedException)
 {
     Log.Fatal(ex, "Application terminated unexpectedly.");
     throw;

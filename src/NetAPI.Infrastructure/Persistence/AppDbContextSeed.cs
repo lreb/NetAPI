@@ -11,7 +11,7 @@ public static class AppDbContextSeed
     {
         try
         {
-            if (context.Database.IsSqlServer())
+            if (context.Database.IsNpgsql())
                 await context.Database.MigrateAsync();
 
             if (!await context.Products.AnyAsync())

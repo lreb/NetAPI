@@ -6,38 +6,19 @@ services:
     container_name: netapi
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=NetAPI_Dev;User Id=sa;Password=YourStrongP@ssw0rd!;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING}
       - ConnectionStrings__Redis=redis:6379
-      - Jwt__Key=docker-dev-super-secret-key-32chars!!
-      - Jwt__Issuer=NetAPI
-      - Jwt__Audience=NetAPI.Client
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
     depends_on:
-      sqlserver:
-        condition: service_healthy
       redis:
         condition: service_healthy
-    networks:
-      - netapi-network
-
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: netapi-sqlserver
-    environment:
-      SA_PASSWORD: "YourStrongP@ssw0rd!"
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Developer"
-    ports:
-      - "1433:1433"
-    volumes:
-      - sqlserver-data:/var/opt/mssql
-    healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'YourStrongP@ssw0rd!' -Q 'SELECT 1' -No"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
     networks:
       - netapi-network
 
@@ -57,7 +38,6 @@ services:
       - netapi-network
 
 volumes:
-  sqlserver-data:
   redis-data:
 
 networks:

@@ -13,17 +13,17 @@ public static class InfrastructureServiceExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // EF Core — SQL Server with retry-on-failure resilience
+        // EF Core — PostgreSQL with retry-on-failure resilience
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(
+            options.UseNpgsql(
                 configuration.GetConnectionString("DefaultConnection"),
-                sqlOptions =>
+                npgsqlOptions =>
                 {
-                    sqlOptions.EnableRetryOnFailure(
+                    npgsqlOptions.EnableRetryOnFailure(
                         maxRetryCount: 5,
                         maxRetryDelay: TimeSpan.FromSeconds(30),
-                        errorNumbersToAdd: null);
-                    sqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
+                        errorCodesToAdd: null);
+                    npgsqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
                 }));
 
         // Repositories & Unit of Work

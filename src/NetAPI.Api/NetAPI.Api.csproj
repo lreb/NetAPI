@@ -7,14 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- EF Core Design (required for dotnet ef migrations) -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <!-- API Versioning -->
     <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.1" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.1" />
     <!-- Rate Limiting -->
     <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
     <!-- Health Checks -->
-    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
+    <!-- Pin EF Core Relational to suppress MSB3277 version conflict with HealthChecks.NpgSql -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.3" />
     <!-- OpenAPI / Swagger -->
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
