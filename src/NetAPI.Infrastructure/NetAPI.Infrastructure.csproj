@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetAPI.Domain\NetAPI.Domain.csproj" />
+    <ProjectReference Include="..\NetAPI.Application\NetAPI.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- EF Core + PostgreSQL -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <!-- Resilience -->
+    <PackageReference Include="Polly" Version="8.6.6" />
+    <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
+    <!-- Redis distributed cache -->
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.3" />
+    <!-- Configuration -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.3" />
+  </ItemGroup>
+
+</Project>

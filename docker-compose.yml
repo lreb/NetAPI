@@ -1,0 +1,45 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: netapi
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING}
+      - ConnectionStrings__Redis=redis:6379
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - netapi-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: netapi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - netapi-network
+
+volumes:
+  redis-data:
+
+networks:
+  netapi-network:
+    driver: bridge
